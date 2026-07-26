@@ -1,4 +1,3 @@
-@charset "UTF-8";
 *,
 *::after,
 *::before {
@@ -1058,17 +1057,17 @@ body {
     transform: translate3d(-50%, -4px, 0) scale(1.02);
   }
 }
-/* Butterfly Container & Pink Swallowtail Scientific Design */
+/* Butterfly Container & Pink Swallowtail Vector Design */
 .butterfly {
   position: fixed;
   z-index: 500;
-  width: 18vmin;
-  height: 18vmin;
+  width: 11.5vmin;
+  height: 11.5vmin;
   transform-style: preserve-3d;
-  perspective: 1200px;
+  perspective: 800px;
   pointer-events: none;
   opacity: 0;
-  filter: drop-shadow(0 0 16px #ff69b4) drop-shadow(0 0 32px #ff1493) drop-shadow(0 0 50px rgba(255, 105, 180, 0.85));
+  filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.85)) drop-shadow(0 0 20px rgba(255, 20, 147, 0.65));
   will-change: transform, opacity;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
@@ -1079,10 +1078,10 @@ body {
 .butterfly__body {
   position: absolute;
   left: 50%;
-  top: 8%;
+  top: 6%;
   transform: translateX(-50%);
-  width: 2.2vmin;
-  height: 12vmin;
+  width: 1.4vmin;
+  height: 7.8vmin;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1090,231 +1089,88 @@ body {
 }
 .butterfly__head {
   position: relative;
-  width: 1.8vmin;
-  height: 1.8vmin;
+  width: 1.2vmin;
+  height: 1.2vmin;
   background: radial-gradient(circle, #ffffff 0%, #ff69b4 60%, #2b041c 100%);
   border-radius: 50%;
-  box-shadow: 0 0 10px #ffffff, 0 0 16px #ff69b4;
+  box-shadow: 0 0 6px #ffffff, 0 0 10px #ff69b4;
 }
 .butterfly__antenna {
   position: absolute;
-  top: -2.5vmin;
-  width: 2.5vmin;
-  height: 3.5vmin;
-  border-top: 2px solid #ff69b4;
+  top: -1.8vmin;
+  width: 1.6vmin;
+  height: 2.4vmin;
+  border-top: 1.5px solid #ff69b4;
   border-radius: 50% 50% 0 0;
-  filter: drop-shadow(0 0 8px #ffffff) drop-shadow(0 0 14px #ff69b4);
+  filter: drop-shadow(0 0 4px #ffffff);
 }
 .butterfly__antenna--left {
-  left: -1.8vmin;
-  border-left: 2px solid #ff69b4;
+  left: -1.2vmin;
+  border-left: 1.5px solid #ff69b4;
   transform: rotate(-30deg);
 }
 .butterfly__antenna--right {
-  right: -1.8vmin;
-  border-right: 2px solid #ff69b4;
+  right: -1.2vmin;
+  border-right: 1.5px solid #ff69b4;
   transform: rotate(30deg);
 }
 .butterfly {
   /* Thorax: Middle Segment Where Wings Attach */
 }
 .butterfly__thorax {
-  width: 2vmin;
-  height: 4.2vmin;
-  margin-top: 0.2vmin;
+  width: 1.3vmin;
+  height: 2.8vmin;
+  margin-top: 0.1vmin;
   background: linear-gradient(to bottom, #ffffff 0%, #ff69b4 40%, #47082e 80%, #14010d 100%);
-  border-radius: 10px;
-  box-shadow: 0 0 12px #ff69b4, 0 0 24px #ff1493;
+  border-radius: 6px;
+  box-shadow: 0 0 8px #ff69b4, 0 0 16px #ff1493;
 }
 .butterfly {
   /* Abdomen: Posterior Body Segment */
 }
 .butterfly__abdomen {
-  width: 1.4vmin;
-  height: 5.8vmin;
+  width: 0.9vmin;
+  height: 3.8vmin;
   margin-top: 0.1vmin;
   background: linear-gradient(to bottom, #47082e 0%, #2b041c 60%, #0d0108 100%);
-  border-radius: 8px;
-  box-shadow: 0 0 8px #ff69b4;
+  border-radius: 5px;
+  box-shadow: 0 0 6px #ff69b4;
 }
 .butterfly {
   /* Wing Pairs (Attached to Thorax, Symmetrical Pivot) */
 }
 .butterfly__wing-pair {
   position: absolute;
-  top: 5%;
-  width: 11vmin;
-  height: 17vmin;
+  top: 2%;
+  width: 6.8vmin;
+  height: 10.5vmin;
   transform-style: preserve-3d;
 }
 .butterfly__wing-pair--left {
-  left: 0;
+  left: -1vmin;
   transform-origin: right center;
   animation: flap-left 0.22s ease-in-out infinite alternate;
 }
 .butterfly__wing-pair--right {
-  right: 0;
+  right: -1vmin;
   transform-origin: left center;
   animation: flap-right 0.22s ease-in-out infinite alternate;
 }
 .butterfly {
-  /* Wings Layering: Deep Dark Plum/Magenta Base with Pink Patterns */
+  /* Vector SVG Wing Container & Paths */
 }
-.butterfly__wing {
-  position: absolute;
-  transform-style: preserve-3d;
+.butterfly__svg-wing {
+  width: 100%;
+  height: 100%;
+  display: block;
   overflow: visible;
-  /* Pink Marginal Spot Row along Outer Edge */
-}
-.butterfly__wing::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background-image: radial-gradient(circle at 6% 10%, #ffffff 0%, #ff69b4 2px, transparent 3.5px), radial-gradient(circle at 18% 5%, #ffffff 0%, #ff69b4 2px, transparent 3.5px), radial-gradient(circle at 32% 3%, #ffb6c1 0%, #ffb6c1 2.5px, transparent 4px), radial-gradient(circle at 50% 4%, #ffffff 0%, #ff69b4 2px, transparent 3.5px), radial-gradient(circle at 68% 5%, #ffb6c1 0%, #ffb6c1 2.5px, transparent 4px), radial-gradient(circle at 83% 12%, #ffffff 0%, #ff69b4 2px, transparent 3.5px), radial-gradient(circle at 94% 26%, #ffb6c1 0%, #ffb6c1 2.5px, transparent 4px), radial-gradient(circle at 96% 44%, #ffffff 0%, #ff69b4 2px, transparent 3.5px), radial-gradient(circle at 92% 62%, #ffb6c1 0%, #ffb6c1 2.5px, transparent 4px);
-  pointer-events: none;
-  z-index: 12;
-  filter: drop-shadow(0 0 5px #ff69b4);
-}
-.butterfly__wing {
-  /* Forewings (Front Pair): Sharply Elongated & Triangular – wide at base, pointed apex */
-}
-.butterfly__wing--fore {
-  top: 0;
-  width: 11vmin;
-  height: 13vmin;
-  z-index: 10;
-  background: linear-gradient(138deg, #2b041c 0%, #47082e 20%, #2b041c 45%, #14010d 70%, #2b041c 100%);
-  /* Clip to sharp triangular forewing shape */
-  clip-path: polygon(0% 0%, 100% 18%, 88% 100%, 0% 72%);
-  box-shadow: inset 0 0 22px rgba(255, 105, 180, 0.5), 0 0 28px rgba(255, 20, 147, 0.9);
-}
-.butterfly__wing {
-  /* Hindwings (Back Pair): Scalloped Lobed Edge with Tail-like Extension */
-}
-.butterfly__wing--hind {
-  top: 7vmin;
-  width: 9.5vmin;
-  height: 10.5vmin;
-  z-index: 5;
-  background: linear-gradient(148deg, #47082e 0%, #2b041c 35%, #14010d 65%, #2b041c 100%);
-  /* Scalloped outer edge via clip-path lobes */
-  clip-path: polygon(0% 0%, 100% 12%, 96% 30%, 100% 48%, 94% 65%, 98% 82%, 88% 100%, 60% 94%, 35% 100%, 12% 90%, 0% 72%);
-  box-shadow: inset 0 0 20px rgba(255, 105, 180, 0.5), 0 0 24px rgba(255, 20, 147, 0.85);
-}
-.butterfly__wing-pair--left .butterfly__wing--fore {
-  right: 0;
-  /* Mirror forewing clip for left side */
-  clip-path: polygon(100% 0%, 0% 18%, 12% 100%, 100% 72%);
-}
-.butterfly__wing-pair--left .butterfly__wing--hind {
-  right: 0.4vmin;
-  /* Mirror hindwing scallops for left side */
-  clip-path: polygon(100% 0%, 0% 12%, 4% 30%, 0% 48%, 6% 65%, 2% 82%, 12% 100%, 40% 94%, 65% 100%, 88% 90%, 100% 72%);
-}
-.butterfly__wing-pair--left .butterfly__wing-tail {
-  right: 1.5vmin;
-  transform: rotate(-16deg);
-}
-.butterfly__wing-pair--right .butterfly__wing--fore {
-  left: 0;
-}
-.butterfly__wing-pair--right .butterfly__wing--hind {
-  left: 0.4vmin;
-}
-.butterfly__wing-pair--right .butterfly__wing-tail {
-  left: 1.5vmin;
-  transform: rotate(16deg);
+  filter: drop-shadow(0 0 5px rgba(255, 105, 180, 0.4));
 }
 .butterfly {
-  /* Swallowtail Slender Tail Appendages with Pointed Tip */
-}
-.butterfly__wing-tail {
-  position: absolute;
-  bottom: -5.5vmin;
-  width: 1.2vmin;
-  height: 6vmin;
-  background: linear-gradient(to bottom, #47082e 0%, #ff1493 30%, #ff69b4 60%, #2b041c 100%);
-  /* Narrowing teardrop tail shape */
-  clip-path: polygon(30% 0%, 70% 0%, 90% 60%, 50% 100%, 10% 60%);
-  box-shadow: 0 0 12px #ff69b4, 0 0 22px #ff1493;
-  z-index: 15;
-  filter: drop-shadow(0 0 8px rgba(255, 105, 180, 0.95));
-}
-.butterfly {
-  /* Pink Wing Cell Patterns & Discal Spot Bands */
-}
-.butterfly__wing-cells {
-  position: absolute;
-  inset: 0;
-  z-index: 4;
-  background: radial-gradient(ellipse at 72% 22%, #ff69b4 0%, #ff1493 28%, rgba(255, 20, 147, 0.35) 55%, transparent 75%), radial-gradient(ellipse at 38% 48%, #ffc0cb 0%, #ff69b4 30%, transparent 65%), radial-gradient(circle at 65% 68%, #ff1493 0%, #ff69b4 18%, transparent 38%), radial-gradient(circle at 45% 80%, #ff69b4 0%, transparent 30%), radial-gradient(ellipse at 88% 55%, rgba(255, 20, 147, 0.6) 0%, transparent 45%);
-  pointer-events: none;
-  opacity: 0.95;
-  mix-blend-mode: screen;
-}
-.butterfly {
-  /* Intricate Vein Network (Costal, Radial, Medial, Cubital, Anal veins) */
-}
-.butterfly__wing-veins {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  background: linear-gradient(to bottom, rgba(15, 2, 10, 0.9) 0px, rgba(15, 2, 10, 0.9) 1.5px, transparent 1.5px), repeating-linear-gradient(22deg, rgba(20, 3, 14, 0.85) 0px, rgba(20, 3, 14, 0.85) 1.5px, transparent 1.5px, transparent 9px), repeating-linear-gradient(-30deg, rgba(30, 4, 20, 0.7) 0px, rgba(30, 4, 20, 0.7) 1px, transparent 1px, transparent 11px), repeating-linear-gradient(55deg, rgba(15, 2, 10, 0.6) 0px, rgba(15, 2, 10, 0.6) 1px, transparent 1px, transparent 15px), repeating-linear-gradient(-55deg, rgba(25, 3, 16, 0.5) 0px, rgba(25, 3, 16, 0.5) 1px, transparent 1px, transparent 18px);
-  pointer-events: none;
-  filter: contrast(1.4) brightness(0.85);
-}
-.butterfly {
-  /* Fine Wing Scale Micro-Texture (overlapping scale rows) */
-}
-.butterfly__wing-scales {
-  position: absolute;
-  inset: 0;
-  z-index: 6;
-  background: repeating-radial-gradient(circle at 25% 25%, rgba(255, 105, 180, 0.2) 0px, transparent 2px), repeating-radial-gradient(circle at 75% 75%, rgba(255, 105, 180, 0.16) 0px, transparent 2px), repeating-radial-gradient(circle at 50% 10%, rgba(255, 182, 193, 0.15) 0px, transparent 1.8px), linear-gradient(135deg, rgba(255, 105, 180, 0.18) 0%, rgba(0, 0, 0, 0.25) 50%, rgba(255, 20, 147, 0.12) 100%);
-  pointer-events: none;
-}
-.butterfly {
-  /* Twinkling Starry Pink Sparkles */
-}
-.butterfly__wing-sparkles {
-  position: absolute;
-  inset: 0;
-  z-index: 8;
-  background-image: radial-gradient(circle at 20% 25%, #ffffff 0%, #ffffff 3px, transparent 4.5px), radial-gradient(circle at 42% 15%, #ffc0cb 0%, #ffc0cb 2.5px, transparent 4px), radial-gradient(circle at 72% 20%, #ff69b4 0%, #ff69b4 3px, transparent 4.5px), radial-gradient(circle at 84% 40%, #ffffff 0%, #ffffff 2.5px, transparent 3.5px), radial-gradient(circle at 50% 62%, #ff1493 0%, #ff1493 2px, transparent 3.5px);
-  animation: sparkle-twinkle 2.5s ease-in-out infinite alternate;
-  pointer-events: none;
-}
-.butterfly {
-  /* Pink Luminous Eye Spot */
-}
-.butterfly__wing-spot {
-  position: absolute;
-  bottom: 2vmin;
-  width: 2.5vmin;
-  height: 2.5vmin;
-  border-radius: 50%;
-  background: radial-gradient(circle, #ffffff 0%, #ffb6c1 30%, #ff1493 60%, #14010d 100%);
-  box-shadow: 0 0 12px #ffffff, 0 0 20px #ff69b4;
-  z-index: 10;
-}
-.butterfly__wing-pair--left .butterfly__wing-spot {
-  left: 1.8vmin;
-}
-.butterfly__wing-pair--right .butterfly__wing-spot {
-  right: 1.8vmin;
-}
-.butterfly {
-  /* Butterfly 2 Variation (Rose Gold & Soft Cherry Pink) */
+  /* Butterfly 2 Variation */
 }
 .butterfly--2 {
-  filter: drop-shadow(0 0 16px #ffb6c1) drop-shadow(0 0 32px #ff69b4) drop-shadow(0 0 50px rgba(255, 182, 193, 0.85));
-}
-.butterfly--2 .butterfly__wing--fore {
-  background: linear-gradient(135deg, #3d0528 0%, #17010e 45%, #2b041c 100%);
-}
-.butterfly--2 .butterfly__wing-cells {
-  background: radial-gradient(ellipse at 80% 20%, #ffffff 0%, #ffc0cb 40%, transparent 80%), radial-gradient(ellipse at 45% 55%, #ff69b4 0%, #ff1493 50%, transparent 85%);
+  filter: drop-shadow(0 0 10px rgba(255, 182, 193, 0.85)) drop-shadow(0 0 20px rgba(255, 105, 180, 0.65));
 }
 .butterfly {
   /* Landed Resting State */
@@ -1331,12 +1187,12 @@ body {
 .butterfly--1.landed {
   left: 40vw !important;
   top: 36vh !important;
-  transform: scale(0.8) rotate(-14deg);
+  transform: scale(0.85) rotate(-14deg);
 }
 .butterfly--2.landed {
   left: 54vw !important;
   top: 46vh !important;
-  transform: scale(0.78) rotate(16deg);
+  transform: scale(0.82) rotate(16deg);
 }
 
 /* Twinkling Sparkles Keyframes */
