@@ -1,0 +1,2477 @@
+*,
+*::after,
+*::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --dark-color: #000;
+}
+
+body {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: var(--dark-color);
+    overflow: hidden;
+    perspective: 1000px;
+}
+
+.night {
+    position: fixed;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    filter: blur(0.1vmin);
+    background-image: radial-gradient(ellipse at top,
+            transparent 0%,
+            var(--dark-color)),
+        radial-gradient(ellipse at bottom,
+            var(--dark-color),
+            rgba(145, 233, 255, 0.2)),
+        repeating-linear-gradient(220deg,
+            rgb(0, 0, 0) 0px,
+            rgb(0, 0, 0) 19px,
+            transparent 19px,
+            transparent 22px),
+        repeating-linear-gradient(189deg,
+            rgb(0, 0, 0) 0px,
+            rgb(0, 0, 0) 19px,
+            transparent 19px,
+            transparent 22px),
+        repeating-linear-gradient(148deg,
+            rgb(0, 0, 0) 0px,
+            rgb(0, 0, 0) 19px,
+            transparent 19px,
+            transparent 22px),
+        linear-gradient(90deg, rgb(0, 255, 250), rgb(240, 240, 240));
+}
+
+.flowers {
+    position: relative;
+    transform: scale(0.9);
+}
+
+.flower {
+    position: absolute;
+    bottom: 10vmin;
+    transform-origin: bottom center;
+    z-index: 10;
+
+    --fl-speed: 0.8s;
+
+    &--1 {
+        animation: moving-flower-1 4s linear infinite;
+
+        .flower__line {
+            $delay: 0.3s;
+
+            height: 70vmin;
+            animation-delay: $delay;
+
+            &__leaf {
+                &--1 {
+                    animation: blooming-leaf-right var(--fl-speed) 1.6s backwards;
+                }
+
+                &--2 {
+                    animation: blooming-leaf-right var(--fl-speed) 1.4s backwards;
+                }
+
+                &--3 {
+                    animation: blooming-leaf-left var(--fl-speed) 1.2s backwards;
+                }
+
+                &--4 {
+                    animation: blooming-leaf-left var(--fl-speed) 1s backwards;
+                }
+
+                &--5 {
+                    animation: blooming-leaf-right var(--fl-speed) 1.8s backwards;
+                }
+
+                &--6 {
+                    animation: blooming-leaf-left var(--fl-speed) 2s backwards;
+                }
+            }
+        }
+    }
+
+    &--2 {
+        left: 50%;
+        transform: rotate(20deg);
+        animation: moving-flower-2 4s linear infinite;
+
+        .flower__line {
+            height: 60vmin;
+            animation-delay: 0.6s;
+
+            &__leaf {
+                &--1 {
+                    animation: blooming-leaf-right var(--fl-speed) 1.9s backwards;
+                }
+
+                &--2 {
+                    animation: blooming-leaf-right var(--fl-speed) 1.7s backwards;
+                }
+
+                &--3 {
+                    animation: blooming-leaf-left var(--fl-speed) 1.5s backwards;
+                }
+
+                &--4 {
+                    animation: blooming-leaf-left var(--fl-speed) 1.3s backwards;
+                }
+            }
+        }
+    }
+
+    &--3 {
+        left: 50%;
+        transform: rotate(-15deg);
+        animation: moving-flower-3 4s linear infinite;
+
+        .flower__line {
+            animation-delay: 0.9s;
+
+            &__leaf {
+                &--1 {
+                    animation: blooming-leaf-right var(--fl-speed) 2.5s backwards;
+                }
+
+                &--2 {
+                    animation: blooming-leaf-right var(--fl-speed) 2.3s backwards;
+                }
+
+                &--3 {
+                    animation: blooming-leaf-left var(--fl-speed) 2.1s backwards;
+                }
+
+                &--4 {
+                    animation: blooming-leaf-left var(--fl-speed) 1.9s backwards;
+                }
+            }
+        }
+    }
+
+    &__leafs {
+        position: relative;
+        animation: blooming-flower 2s backwards;
+
+        $delay: 0.8;
+        $inc: 0.3;
+
+        @for $i from 1 through 3 {
+            &--#{$i} {
+                $delay: $delay + $inc;
+                animation-delay: #{$delay}s;
+            }
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            transform: translate(-50%, -100%);
+            width: 14vmin;
+            height: 14vmin;
+            background-color: #ff007f;
+            filter: blur(8vmin);
+            animation: aura-pulse 3s ease-in-out infinite alternate;
+        }
+    }
+
+    &__leaf {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 8vmin;
+        height: 11vmin;
+        border-radius: 51% 49% 47% 53% / 44% 45% 55% 69%;
+        background-color: #ff52a2;
+        background-image: linear-gradient(to top, #d6006e 0%, #ff4d94 50%, #ffc2d1 100%);
+        transform-origin: bottom center;
+        opacity: 0.95;
+        box-shadow: inset 0 0 2vmin rgba(255, 255, 255, 0.7), 0 0 15px rgba(255, 20, 147, 0.6);
+
+        &--1 {
+            transform: translate(-10%, 1%) rotateY(40deg) rotateX(-50deg);
+        }
+
+        &--2 {
+            transform: translate(-50%, -4%) rotateX(40deg);
+        }
+
+        &--3 {
+            transform: translate(-90%, 0%) rotateY(45deg) rotateX(50deg);
+        }
+
+        &--4 {
+            width: 8vmin;
+            height: 8vmin;
+            transform-origin: bottom left;
+            border-radius: 4vmin 10vmin 4vmin 4vmin;
+            transform: translate(-0%, 18%) rotateX(70deg) rotate(-43deg);
+            background-image: linear-gradient(to top, #c40062 0%, #ff3399 60%, #ffa6d5 100%);
+            z-index: 1;
+            opacity: 0.9;
+            box-shadow: inset 0 0 1.5vmin rgba(255, 255, 255, 0.6), 0 0 12px rgba(255, 0, 127, 0.5);
+        }
+    }
+
+    &__white-circle {
+        position: absolute;
+        left: -3.5vmin;
+        top: -3vmin;
+        width: 9vmin;
+        height: 4vmin;
+        border-radius: 50%;
+        background-color: #fff;
+        box-shadow: 0 0 15px rgba(255, 105, 180, 0.8), 0 0 30px rgba(255, 20, 147, 0.6);
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 45%;
+            transform: translate(-50%, -50%);
+            width: 60%;
+            height: 60%;
+            border-radius: inherit;
+            background-image: repeating-linear-gradient(135deg,
+                    rgba(0, 0, 0, 0.03) 0px,
+                    rgba(0, 0, 0, 0.03) 1px,
+                    transparent 1px,
+                    transparent 12px),
+                repeating-linear-gradient(45deg,
+                    rgba(0, 0, 0, 0.03) 0px,
+                    rgba(0, 0, 0, 0.03) 1px,
+                    transparent 1px,
+                    transparent 12px),
+                repeating-linear-gradient(67.5deg,
+                    rgba(0, 0, 0, 0.03) 0px,
+                    rgba(0, 0, 0, 0.03) 1px,
+                    transparent 1px,
+                    transparent 12px),
+                repeating-linear-gradient(135deg,
+                    rgba(0, 0, 0, 0.03) 0px,
+                    rgba(0, 0, 0, 0.03) 1px,
+                    transparent 1px,
+                    transparent 12px),
+                repeating-linear-gradient(45deg,
+                    rgba(0, 0, 0, 0.03) 0px,
+                    rgba(0, 0, 0, 0.03) 1px,
+                    transparent 1px,
+                    transparent 12px),
+                repeating-linear-gradient(112.5deg,
+                    rgba(0, 0, 0, 0.03) 0px,
+                    rgba(0, 0, 0, 0.03) 1px,
+                    transparent 1px,
+                    transparent 12px),
+                repeating-linear-gradient(112.5deg,
+                    rgba(0, 0, 0, 0.03) 0px,
+                    rgba(0, 0, 0, 0.03) 1px,
+                    transparent 1px,
+                    transparent 12px),
+                repeating-linear-gradient(45deg,
+                    rgba(0, 0, 0, 0.03) 0px,
+                    rgba(0, 0, 0, 0.03) 1px,
+                    transparent 1px,
+                    transparent 12px),
+                repeating-linear-gradient(22.5deg,
+                    rgba(0, 0, 0, 0.03) 0px,
+                    rgba(0, 0, 0, 0.03) 1px,
+                    transparent 1px,
+                    transparent 12px),
+                repeating-linear-gradient(45deg,
+                    rgba(0, 0, 0, 0.03) 0px,
+                    rgba(0, 0, 0, 0.03) 1px,
+                    transparent 1px,
+                    transparent 12px),
+                repeating-linear-gradient(22.5deg,
+                    rgba(0, 0, 0, 0.03) 0px,
+                    rgba(0, 0, 0, 0.03) 1px,
+                    transparent 1px,
+                    transparent 12px),
+                repeating-linear-gradient(135deg,
+                    rgba(0, 0, 0, 0.03) 0px,
+                    rgba(0, 0, 0, 0.03) 1px,
+                    transparent 1px,
+                    transparent 12px),
+                repeating-linear-gradient(157.5deg,
+                    rgba(0, 0, 0, 0.03) 0px,
+                    rgba(0, 0, 0, 0.03) 1px,
+                    transparent 1px,
+                    transparent 12px),
+                repeating-linear-gradient(67.5deg,
+                    rgba(0, 0, 0, 0.03) 0px,
+                    rgba(0, 0, 0, 0.03) 1px,
+                    transparent 1px,
+                    transparent 12px),
+                repeating-linear-gradient(67.5deg,
+                    rgba(0, 0, 0, 0.03) 0px,
+                    rgba(0, 0, 0, 0.03) 1px,
+                    transparent 1px,
+                    transparent 12px),
+                linear-gradient(90deg, rgb(255, 235, 18), rgb(255, 206, 0));
+        }
+    }
+
+    &__line {
+        height: 55vmin;
+        width: 1.5vmin;
+        background-image: linear-gradient(to left,
+                rgb(0, 0, 0, 0.2),
+                transparent,
+                rgba(255, 255, 255, 0.2)),
+            linear-gradient(to top, transparent 10%, #14757a, #39c6d6);
+        box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
+        animation: grow-flower-tree 4s backwards;
+
+        &__leaf {
+            --w: 7vmin;
+            --h: calc(var(--w) + 2vmin);
+            position: absolute;
+            top: 20%;
+            left: 90%;
+            width: var(--w);
+            height: var(--h);
+            border-top-right-radius: var(--h);
+            border-bottom-left-radius: var(--h);
+            background-image: linear-gradient(to top,
+                    rgba(20, 117, 122, 0.4),
+                    #39c6d6);
+
+            &--1 {
+                transform: rotate(70deg) rotateY(30deg);
+            }
+
+            &--2 {
+                top: 45%;
+                transform: rotate(70deg) rotateY(30deg);
+            }
+
+            &--3,
+            &--4,
+            &--6 {
+                border-top-right-radius: 0;
+                border-bottom-left-radius: 0;
+                border-top-left-radius: var(--h);
+                border-bottom-right-radius: var(--h);
+                left: -460%;
+                top: 12%;
+                transform: rotate(-70deg) rotateY(30deg);
+            }
+
+            &--4 {
+                top: 40%;
+            }
+
+            &--5 {
+                top: 0;
+                transform-origin: left;
+                transform: rotate(70deg) rotateY(30deg) scale(0.6);
+            }
+
+            &--6 {
+                top: -2%;
+                left: -450%;
+                transform-origin: right;
+                transform: rotate(-70deg) rotateY(30deg) scale(0.6);
+            }
+        }
+    }
+
+    &__light {
+        position: absolute;
+        bottom: 0vmin;
+        width: 1vmin;
+        height: 1vmin;
+        background-color: rgb(255, 251, 0);
+        border-radius: 50%;
+        filter: blur(0.2vmin);
+        animation: light-ans 4s linear infinite backwards;
+        box-shadow: 0 0 8px rgba(255, 215, 0, 0.9), 0 0 15px rgba(255, 105, 180, 0.7);
+
+        &:nth-child(odd) {
+            background-color: #ff66c4;
+            box-shadow: 0 0 8px rgba(255, 102, 196, 0.9), 0 0 15px rgba(255, 20, 147, 0.8);
+        }
+
+        &--1 {
+            left: -2vmin;
+            animation-delay: 1s;
+        }
+
+        &--2 {
+            left: 3vmin;
+            animation-delay: 0.5s;
+        }
+
+        &--3 {
+            left: -6vmin;
+            animation-delay: 0.3s;
+        }
+
+        &--4 {
+            left: 6vmin;
+            animation-delay: 0.9s;
+        }
+
+        &--5 {
+            left: -1vmin;
+            animation-delay: 1.5s;
+        }
+
+        &--6 {
+            left: -4vmin;
+            animation-delay: 3s;
+        }
+
+        &--7 {
+            left: 3vmin;
+            animation-delay: 2s;
+        }
+
+        &--8 {
+            left: -6vmin;
+            animation-delay: 3.5s;
+        }
+    }
+
+    &__grass {
+        --c: #159faa;
+        --line-w: 1.5vmin;
+
+        position: absolute;
+        bottom: 12vmin;
+        left: -7vmin;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        z-index: 20;
+        transform-origin: bottom center;
+        transform: rotate(-48deg) rotateY(40deg);
+
+        &--1 {
+            animation: moving-grass 2s linear infinite;
+        }
+
+        &--2 {
+            left: 2vmin;
+            bottom: 10vmin;
+            transform: scale(0.5) rotate(75deg) rotateX(10deg) rotateY(-200deg);
+            opacity: 0.8;
+            z-index: 0;
+            animation: moving-grass--2 1.5s linear infinite;
+        }
+
+        &--top {
+            width: 7vmin;
+            height: 10vmin;
+            border-top-right-radius: 100%;
+            border-right: var(--line-w) solid var(--c);
+            transform-origin: bottom center;
+            transform: rotate(-2deg);
+        }
+
+        &--bottom {
+            margin-top: -2px;
+            width: var(--line-w);
+            height: 25vmin;
+            background-image: linear-gradient(to top, transparent, var(--c));
+        }
+
+        &__leaf {
+            --size: 10vmin;
+            position: absolute;
+            width: calc(var(--size) * 2.1);
+            height: var(--size);
+            border-top-left-radius: var(--size);
+            border-top-right-radius: var(--size);
+            background-image: linear-gradient(to top,
+                    transparent,
+                    transparent 30%,
+                    var(--c));
+            z-index: 100;
+
+            $speed-leaf: 2s;
+
+            &--1 {
+                top: -6%;
+                left: 30%;
+                --size: 6vmin;
+                transform: rotate(-20deg);
+                animation: growing-grass-ans--1 $speed-leaf 2.6s backwards;
+
+                @keyframes growing-grass-ans--1 {
+                    0% {
+                        transform-origin: bottom left;
+                        transform: rotate(-20deg) scale(0);
+                    }
+                }
+            }
+
+            &--2 {
+                top: -5%;
+                left: -110%;
+                --size: 6vmin;
+                transform: rotate(10deg);
+                animation: growing-grass-ans--2 $speed-leaf 2.4s linear backwards;
+
+                @keyframes growing-grass-ans--2 {
+                    0% {
+                        transform-origin: bottom right;
+                        transform: rotate(10deg) scale(0);
+                    }
+                }
+            }
+
+            &--3 {
+                top: 5%;
+                left: 60%;
+                --size: 8vmin;
+                transform: rotate(-18deg) rotateX(-20deg);
+                animation: growing-grass-ans--3 $speed-leaf 2.2s linear backwards;
+
+                @keyframes growing-grass-ans--3 {
+                    0% {
+                        transform-origin: bottom left;
+                        transform: rotate(-18deg) rotateX(-20deg) scale(0);
+                    }
+                }
+            }
+
+            &--4 {
+                top: 6%;
+                left: -135%;
+                --size: 8vmin;
+                transform: rotate(2deg);
+                animation: growing-grass-ans--4 $speed-leaf 2s linear backwards;
+
+                @keyframes growing-grass-ans--4 {
+                    0% {
+                        transform-origin: bottom right;
+                        transform: rotate(2deg) scale(0);
+                    }
+                }
+            }
+
+            &--5 {
+                top: 20%;
+                left: 60%;
+                --size: 10vmin;
+                transform: rotate(-24deg) rotateX(-20deg);
+                animation: growing-grass-ans--5 $speed-leaf 1.8s linear backwards;
+
+                @keyframes growing-grass-ans--5 {
+                    0% {
+                        transform-origin: bottom left;
+                        transform: rotate(-24deg) rotateX(-20deg) scale(0);
+                    }
+                }
+            }
+
+            &--6 {
+                top: 22%;
+                left: -180%;
+                --size: 10vmin;
+                transform: rotate(10deg);
+                animation: growing-grass-ans--6 $speed-leaf 1.6s linear backwards;
+
+                @keyframes growing-grass-ans--6 {
+                    0% {
+                        transform-origin: bottom right;
+                        transform: rotate(10deg) scale(0);
+                    }
+                }
+            }
+
+            &--7 {
+                top: 39%;
+                left: 70%;
+                --size: 10vmin;
+                transform: rotate(-10deg);
+                animation: growing-grass-ans--7 $speed-leaf 1.4s linear backwards;
+
+                @keyframes growing-grass-ans--7 {
+                    0% {
+                        transform-origin: bottom left;
+                        transform: rotate(-10deg) scale(0);
+                    }
+                }
+            }
+
+            &--8 {
+                top: 40%;
+                left: -215%;
+                --size: 11vmin;
+                transform: rotate(10deg);
+                animation: growing-grass-ans--8 $speed-leaf 1.2s linear backwards;
+
+                @keyframes growing-grass-ans--8 {
+                    0% {
+                        transform-origin: bottom right;
+                        transform: rotate(10deg) scale(0);
+                    }
+                }
+            }
+        }
+
+        &__overlay {
+            position: absolute;
+            top: -10%;
+            right: 0%;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            filter: blur(1.5vmin);
+            z-index: 100;
+        }
+    }
+
+    &__g-long {
+        --w: 2vmin;
+        --h: 6vmin;
+        --c: #159faa;
+        position: absolute;
+        bottom: 10vmin;
+        left: -3vmin;
+        transform-origin: bottom center;
+        transform: rotate(-30deg) rotateY(-20deg);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        animation: flower-g-long-ans 3s linear infinite;
+
+        @keyframes flower-g-long-ans {
+
+            0%,
+            100% {
+                transform: rotate(-30deg) rotateY(-20deg);
+            }
+
+            50% {
+                transform: rotate(-32deg) rotateY(-20deg);
+            }
+        }
+
+        &__top {
+            top: calc(var(--h) * -1);
+            width: calc(var(--w) + 1vmin);
+            height: var(--h);
+            border-top-right-radius: 100%;
+            border-right: 0.7vmin solid var(--c);
+            transform: translate(-0.7vmin, 1vmin);
+        }
+
+        &__bottom {
+            width: var(--w);
+            height: 50vmin;
+            transform-origin: bottom center;
+            background-image: linear-gradient(to top, transparent 30%, var(--c));
+            box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
+            clip-path: polygon(35% 0, 65% 1%, 100% 100%, 0% 100%);
+        }
+    }
+
+    &__g-right {
+        position: absolute;
+        bottom: 6vmin;
+        left: -2vmin;
+        transform-origin: bottom left;
+        transform: rotate(20deg);
+
+        .leaf {
+            width: 30vmin;
+            height: 50vmin;
+            border-top-left-radius: 100%;
+            border-left: 2vmin solid #079097;
+            background-image: linear-gradient(to bottom,
+                    transparent,
+                    var(--dark-color) 60%);
+            -webkit-mask-image: linear-gradient(to top, transparent 30%, #079097 60%);
+            mask-image: linear-gradient(to top, transparent 30%, #079097 60%);
+        }
+
+        &--1 {
+            animation: flower-g-right-ans 2.5s linear infinite;
+        }
+
+        &--2 {
+            left: 5vmin;
+            transform: rotateY(-180deg);
+            animation: flower-g-right-ans--2 3s linear infinite;
+
+            .leaf {
+                height: 75vmin;
+                filter: blur(0.3vmin);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes flower-g-right-ans {
+
+            0%,
+            100% {
+                transform: rotate(20deg);
+            }
+
+            50% {
+                transform: rotate(24deg) rotateX(-20deg);
+            }
+        }
+
+        @keyframes flower-g-right-ans--2 {
+
+            0%,
+            100% {
+                transform: rotateY(-180deg) rotate(0deg) rotateX(-20deg);
+            }
+
+            50% {
+                transform: rotateY(-180deg) rotate(6deg) rotateX(-20deg);
+            }
+        }
+    }
+
+    &__g-front {
+        position: absolute;
+        bottom: 6vmin;
+        left: 2.5vmin;
+        z-index: 100;
+        transform-origin: bottom center;
+        transform: rotate(-28deg) rotateY(30deg) scale(1.04);
+        animation: flower__g-front-ans 2s linear infinite;
+
+        @keyframes flower__g-front-ans {
+
+            0%,
+            100% {
+                transform: rotate(-28deg) rotateY(30deg) scale(1.04);
+            }
+
+            50% {
+                transform: rotate(-35deg) rotateY(40deg) scale(1.04);
+            }
+        }
+
+        &__line {
+            width: 0.3vmin;
+            height: 20vmin;
+            background-image: linear-gradient(to top,
+                    transparent,
+                    #079097,
+                    transparent 100%);
+            position: relative;
+        }
+
+        &__leaf-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform-origin: bottom left;
+            transform: rotate(10deg);
+
+            &:nth-child(even) {
+                left: 0vmin;
+                transform: rotateY(-180deg) rotate(5deg);
+                animation: flower__g-front__leaf-left-ans 1s ease-in backwards;
+            }
+
+            &:nth-child(odd) {
+                animation: flower__g-front__leaf-ans 1s ease-in backwards;
+            }
+
+            &--1 {
+                top: -8vmin;
+                transform: scale(0.7);
+                animation: flower__g-front__leaf-ans 1s 5.5s ease-in backwards !important;
+            }
+
+            &--2 {
+                top: -8vmin;
+                transform: rotateY(-180deg) scale(0.7) !important;
+                animation: flower__g-front__leaf-left-ans-2 1s 4.6s ease-in backwards !important;
+            }
+
+            &--3 {
+                top: -3vmin;
+                animation: flower__g-front__leaf-ans 1s 4.6s ease-in backwards;
+            }
+
+            &--4 {
+                top: -3vmin;
+                transform: rotateY(-180deg) scale(0.9) !important;
+                animation: flower__g-front__leaf-left-ans-2 1s 4.6s ease-in backwards !important;
+            }
+
+            @keyframes flower__g-front__leaf-left-ans-2 {
+                0% {
+                    transform: rotateY(-180deg) scale(0);
+                }
+            }
+
+            &--5,
+            &--6 {
+                top: 2vmin;
+            }
+
+            &--7,
+            &--8 {
+                top: 6.5vmin;
+            }
+
+            &--2 {
+                animation-delay: 5.2s !important;
+            }
+
+            &--3 {
+                animation-delay: 4.9s !important;
+            }
+
+            &--5 {
+                animation-delay: 4.3s !important;
+            }
+
+            &--6 {
+                animation-delay: 4.1s !important;
+            }
+
+            &--7 {
+                animation-delay: 3.8s !important;
+            }
+
+            &--8 {
+                animation-delay: 3.5s !important;
+            }
+
+            @keyframes flower__g-front__leaf-ans {
+                0% {
+                    transform: rotate(10deg) scale(0);
+                }
+            }
+
+            @keyframes flower__g-front__leaf-left-ans {
+                0% {
+                    transform: rotateY(-180deg) rotate(5deg) scale(0);
+                }
+            }
+        }
+
+        &__leaf {
+            width: 10vmin;
+            height: 10vmin;
+            border-radius: 100% 0% 0% 100% / 100% 100% 0% 0%;
+            box-shadow: inset 0 2px 1vmin hsla(184, 97%, 58%, 0.2);
+            background-image: linear-gradient(to bottom left,
+                    transparent,
+                    var(--dark-color)),
+                linear-gradient(to bottom right,
+                    #159faa 50%,
+                    transparent 50%,
+                    transparent);
+
+            -webkit-mask-image: linear-gradient(to bottom right,
+                    #159faa 50%,
+                    transparent 50%,
+                    transparent);
+            mask-image: linear-gradient(to bottom right,
+                    #159faa 50%,
+                    transparent 50%,
+                    transparent);
+        }
+    }
+
+    &__g-fr {
+        position: absolute;
+        bottom: -4vmin;
+        left: vmin;
+        transform-origin: bottom left;
+        z-index: 10;
+
+        animation: flower__g-fr-ans 2s linear infinite;
+
+        @keyframes flower__g-fr-ans {
+
+            0%,
+            100% {
+                transform: rotate(2deg);
+            }
+
+            50% {
+                transform: rotate(4deg);
+            }
+        }
+
+        .leaf {
+            width: 30vmin;
+            height: 50vmin;
+            border-top-left-radius: 100%;
+            border-left: 2vmin solid #079097;
+            -webkit-mask-image: linear-gradient(to top, transparent 25%, #079097 50%);
+            mask-image: linear-gradient(to top, transparent 25%, #079097 50%);
+            position: relative;
+            z-index: 1;
+        }
+
+        &__leaf {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 10vmin;
+            height: 10vmin;
+            border-radius: 100% 0% 0% 100% / 100% 100% 0% 0%;
+            box-shadow: inset 0 2px 1vmin hsla(184, 97%, 58%, 0.2);
+            background-image: linear-gradient(to bottom left,
+                    transparent,
+                    var(--dark-color) 98%),
+                linear-gradient(to bottom right,
+                    #23f0ff 45%,
+                    transparent 50%,
+                    transparent);
+
+            -webkit-mask-image: linear-gradient(135deg,
+                    #159faa 40%,
+                    transparent 50%,
+                    transparent);
+            mask-image: linear-gradient(135deg,
+                    #159faa 40%,
+                    transparent 50%,
+                    transparent);
+
+            &--1 {
+                left: 20vmin;
+                transform: rotate(45deg);
+
+                animation: flower__g-fr-leaft-ans-1 0.5s 5.2s linear backwards;
+
+                @keyframes flower__g-fr-leaft-ans-1 {
+                    0% {
+                        transform-origin: left;
+                        transform: rotate(45deg) scale(0);
+                    }
+                }
+            }
+
+            &--2 {
+                left: 12vmin;
+                top: -7vmin;
+                transform: rotate(25deg) rotateY(-180deg);
+                animation: flower__g-fr-leaft-ans-6 0.5s 5s linear backwards;
+            }
+
+            &--3 {
+                left: 15vmin;
+                top: 6vmin;
+                transform: rotate(55deg);
+                animation: flower__g-fr-leaft-ans-5 0.5s 4.8s linear backwards;
+            }
+
+            &--4 {
+                left: 6vmin;
+                top: -2vmin;
+                transform: rotate(25deg) rotateY(-180deg);
+                animation: flower__g-fr-leaft-ans-6 0.5s 4.6s linear backwards;
+            }
+
+            &--5 {
+                left: 10vmin;
+                top: 14vmin;
+                transform: rotate(55deg);
+                animation: flower__g-fr-leaft-ans-5 0.5s 4.4s linear backwards;
+
+                @keyframes flower__g-fr-leaft-ans-5 {
+                    0% {
+                        transform-origin: left;
+                        transform: rotate(55deg) scale(0);
+                    }
+                }
+            }
+
+            &--6 {
+                left: 0vmin;
+                top: 6vmin;
+                transform: rotate(25deg) rotateY(-180deg);
+                animation: flower__g-fr-leaft-ans-6 0.5s 4.2s linear backwards;
+
+                @keyframes flower__g-fr-leaft-ans-6 {
+                    0% {
+                        transform-origin: right;
+                        transform: rotate(25deg) rotateY(-180deg) scale(0);
+                    }
+                }
+            }
+
+            &--7 {
+                left: 5vmin;
+                top: 22vmin;
+                transform: rotate(45deg);
+                animation: flower__g-fr-leaft-ans-7 0.5s 4s linear backwards;
+
+                @keyframes flower__g-fr-leaft-ans-7 {
+                    0% {
+                        transform-origin: left;
+                        transform: rotate(45deg) scale(0);
+                    }
+                }
+            }
+
+            &--8 {
+                left: -4vmin;
+                top: 15vmin;
+                transform: rotate(15deg) rotateY(-180deg);
+                animation: flower__g-fr-leaft-ans-8 0.5s 3.8s linear backwards;
+
+                @keyframes flower__g-fr-leaft-ans-8 {
+                    0% {
+                        transform-origin: right;
+                        transform: rotate(15deg) rotateY(-180deg) scale(0);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.long-g {
+    position: absolute;
+    bottom: 25vmin;
+    left: -42vmin;
+    transform-origin: bottom left;
+    filter: drop-shadow(0 0 10px rgba(255, 20, 147, 0.85)) drop-shadow(0 0 20px rgba(255, 105, 180, 0.7));
+
+    &--1 {
+        bottom: 0vmin;
+        transform: scale(0.8) rotate(-5deg);
+
+        .leaf {
+            -webkit-mask-image: linear-gradient(to top,
+                    transparent 40%,
+                    #079097 80%) !important;
+            mask-image: linear-gradient(to top,
+                    transparent 40%,
+                    #079097 80%) !important;
+
+            &--1 {
+                --w: 5vmin;
+                --h: 60vmin;
+                left: -2vmin;
+                transform: rotate(3deg) rotateY(-180deg);
+            }
+        }
+    }
+
+    &--2,
+    &--3 {
+        bottom: -3vmin;
+        left: -35vmin;
+        transform-origin: center;
+        transform: scale(0.6) rotateX(60deg);
+
+        .leaf {
+            -webkit-mask-image: linear-gradient(to top,
+                    transparent 50%,
+                    #079097 80%) !important;
+            mask-image: linear-gradient(to top,
+                    transparent 50%,
+                    #079097 80%) !important;
+
+            &--1 {
+                left: -1vmin;
+                transform: rotateY(-180deg);
+            }
+        }
+    }
+
+    &--3 {
+        left: -17vmin;
+        bottom: 0vmin;
+
+        .leaf {
+            -webkit-mask-image: linear-gradient(to top,
+                    transparent 40%,
+                    #079097 80%) !important;
+            mask-image: linear-gradient(to top,
+                    transparent 40%,
+                    #079097 80%) !important;
+        }
+    }
+
+    &--4 {
+        left: 25vmin;
+        bottom: -3vmin;
+        transform-origin: center;
+        transform: scale(0.6) rotateX(60deg);
+
+        .leaf {
+            -webkit-mask-image: linear-gradient(to top,
+                    transparent 50%,
+                    #079097 80%) !important;
+            mask-image: linear-gradient(to top,
+                    transparent 50%,
+                    #079097 80%) !important;
+        }
+    }
+
+    &--5 {
+        left: 42vmin;
+        bottom: 0vmin;
+        transform: scale(0.8) rotate(2deg);
+    }
+
+    &--6 {
+        left: 0vmin;
+        bottom: -20vmin;
+        z-index: 100;
+        filter: blur(0.3vmin);
+        transform: scale(0.8) rotate(2deg);
+    }
+
+    &--7 {
+        left: 35vmin;
+        bottom: 20vmin;
+        z-index: -1;
+        filter: blur(0.3vmin);
+        transform: scale(0.6) rotate(2deg);
+        opacity: 0.7;
+    }
+
+    .leaf {
+        --w: 15vmin;
+        --h: 40vmin;
+        --c: #ff52a2;
+
+        position: absolute;
+        bottom: 0;
+        width: var(--w);
+        height: var(--h);
+        border-top-left-radius: 100%;
+        border-left: 2vmin solid var(--c);
+        filter: drop-shadow(0 0 8px rgba(255, 20, 147, 0.8)) drop-shadow(0 0 15px rgba(255, 105, 180, 0.7));
+        -webkit-mask-image: linear-gradient(to top,
+                transparent 20%,
+                var(--dark-color));
+        mask-image: linear-gradient(to top,
+                transparent 20%,
+                var(--dark-color));
+
+        transform-origin: bottom center;
+
+        &--0 {
+            left: 2vmin;
+            animation: leaf-ans-1 4s linear infinite;
+        }
+
+        &--1 {
+            --w: 5vmin;
+            --h: 60vmin;
+            animation: leaf-ans-1 4s linear infinite;
+        }
+
+        &--2 {
+            --w: 10vmin;
+            --h: 40vmin;
+            left: -0.5vmin;
+            bottom: 5vmin;
+            transform-origin: bottom left;
+            transform: rotateY(-180deg);
+            animation: leaf-ans-2 3s linear infinite;
+        }
+
+        &--3 {
+            --w: 5vmin;
+            --h: 30vmin;
+            left: -1vmin;
+            bottom: 3.2vmin;
+            transform-origin: bottom left;
+            transform: rotate(-10deg) rotateY(-180deg);
+            animation: leaf-ans-3 3s linear infinite;
+        }
+    }
+}
+
+@keyframes leaf-ans-1 {
+
+    0%,
+    100% {
+        transform: rotate(-5deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(5deg) scale(1.1);
+    }
+}
+
+@keyframes leaf-ans-2 {
+
+    0%,
+    100% {
+        transform: rotateY(-180deg) rotate(5deg);
+    }
+
+    50% {
+        transform: rotateY(-180deg) rotate(0deg) scale(1.1);
+    }
+}
+
+@keyframes leaf-ans-3 {
+
+    0%,
+    100% {
+        transform: rotate(-10deg) rotateY(-180deg);
+    }
+
+    50% {
+        transform: rotate(-20deg) rotateY(-180deg);
+    }
+}
+
+.grow-ans {
+    animation: grow-ans 2s var(--d) backwards;
+}
+
+@keyframes grow-ans {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+@keyframes light-ans {
+    0% {
+        opacity: 0;
+        transform: translateY(0vmin);
+    }
+
+    25% {
+        opacity: 1;
+        transform: translateY(-5vmin) translateX(-2vmin);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(-15vmin) translateX(2vmin);
+        filter: blur(0.2vmin);
+    }
+
+    75% {
+        transform: translateY(-20vmin) translateX(-2vmin);
+        filter: blur(0.2vmin);
+    }
+
+    100% {
+        transform: translateY(-30vmin);
+        opacity: 0;
+        filter: blur(1vmin);
+    }
+}
+
+@keyframes moving-flower-1 {
+
+    0%,
+    100% {
+        transform: rotate(2deg);
+    }
+
+    50% {
+        transform: rotate(-2deg);
+    }
+}
+
+@keyframes moving-flower-2 {
+
+    0%,
+    100% {
+        transform: rotate(18deg);
+    }
+
+    50% {
+        transform: rotate(14deg);
+    }
+}
+
+@keyframes moving-flower-3 {
+
+    0%,
+    100% {
+        transform: rotate(-18deg);
+    }
+
+    50% {
+        transform: rotate(-20deg) rotateY(-10deg);
+    }
+}
+
+@keyframes blooming-leaf-right {
+    0% {
+        transform-origin: left;
+        transform: rotate(70deg) rotateY(30deg) scale(0);
+    }
+}
+
+@keyframes blooming-leaf-left {
+    0% {
+        transform-origin: right;
+        transform: rotate(-70deg) rotateY(30deg) scale(0);
+    }
+}
+
+@keyframes grow-flower-tree {
+    0% {
+        height: 0;
+        border-radius: 1vmin;
+    }
+}
+
+@keyframes blooming-flower {
+    0% {
+        transform: scale(0);
+    }
+}
+
+@keyframes moving-grass {
+
+    0%,
+    100% {
+        transform: rotate(-48deg) rotateY(40deg);
+    }
+
+    50% {
+        transform: rotate(-50deg) rotateY(40deg);
+    }
+}
+
+@keyframes moving-grass--2 {
+
+    0%,
+    100% {
+        transform: scale(0.5) rotate(75deg) rotateX(10deg) rotateY(-200deg);
+    }
+
+    50% {
+        transform: scale(0.5) rotate(79deg) rotateX(10deg) rotateY(-200deg);
+    }
+}
+
+.growing-grass {
+    animation: growing-grass-ans 1s 2s backwards;
+}
+
+@keyframes growing-grass-ans {
+    0% {
+        transform: scale(0);
+    }
+}
+
+.not-loaded * {
+    animation-play-state: paused !important;
+}
+
+@keyframes aura-pulse {
+
+    0%,
+    100% {
+        transform: translate(-50%, -100%) scale(1);
+        opacity: 0.85;
+        filter: blur(8vmin);
+    }
+
+    50% {
+        transform: translate(-50%, -100%) scale(1.35);
+        opacity: 1;
+        filter: blur(11vmin);
+    }
+}
+
+/* ==========================================================================
+   Instruction Message & Leafwing Glowing Butterflies
+   ========================================================================== */
+
+.instruction-message {
+    position: fixed;
+    top: 5vmin;
+    left: 50%;
+    transform: translate(-50%, -20px);
+    z-index: 1000;
+    font-family: 'Outfit', 'Inter', sans-serif;
+    font-size: 2.3vmin;
+    font-weight: 400;
+    letter-spacing: 0.15vmin;
+    color: #ffffff;
+    text-align: center;
+    background: rgba(12, 4, 20, 0.75);
+    padding: 1.4vmin 3.6vmin;
+    border-radius: 40px;
+    border: 1px solid rgba(255, 105, 180, 0.45);
+    box-shadow: 0 0 20px rgba(255, 20, 147, 0.4), inset 0 0 12px rgba(255, 105, 180, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    text-shadow: 0 0 8px rgba(255, 105, 180, 0.9), 0 0 18px rgba(255, 20, 147, 0.8);
+    opacity: 0;
+    pointer-events: none;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &.visible {
+        opacity: 1;
+        transform: translate(-50%, 0);
+        animation: message-pulse 3s ease-in-out infinite alternate;
+    }
+}
+
+@keyframes message-pulse {
+    0% {
+        transform: translate3d(-50%, 0, 0) scale(1);
+    }
+    100% {
+        transform: translate3d(-50%, -4px, 0) scale(1.02);
+    }
+}
+
+/* Butterfly Container & Pink Swallowtail Scientific Design */
+.butterfly {
+    position: fixed;
+    z-index: 500;
+    width: 18vmin;
+    height: 18vmin;
+    transform-style: preserve-3d;
+    perspective: 1200px;
+    pointer-events: none;
+    opacity: 0;
+    filter: drop-shadow(0 0 16px #ff69b4) drop-shadow(0 0 32px #ff1493) drop-shadow(0 0 50px rgba(255, 105, 180, 0.85));
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+    animation-fill-mode: forwards;
+
+    /* Anatomical Body: Head + Thorax + Abdomen */
+    &__body {
+        position: absolute;
+        left: 50%;
+        top: 8%;
+        transform: translateX(-50%);
+        width: 2.2vmin;
+        height: 12vmin;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 30;
+    }
+
+    &__head {
+        position: relative;
+        width: 1.8vmin;
+        height: 1.8vmin;
+        background: radial-gradient(circle, #ffffff 0%, #ff69b4 60%, #2b041c 100%);
+        border-radius: 50%;
+        box-shadow: 0 0 10px #ffffff, 0 0 16px #ff69b4;
+    }
+
+    &__antenna {
+        position: absolute;
+        top: -2.5vmin;
+        width: 2.5vmin;
+        height: 3.5vmin;
+        border-top: 2px solid #ff69b4;
+        border-radius: 50% 50% 0 0;
+        filter: drop-shadow(0 0 8px #ffffff) drop-shadow(0 0 14px #ff69b4);
+
+        &--left {
+            left: -1.8vmin;
+            border-left: 2px solid #ff69b4;
+            transform: rotate(-30deg);
+        }
+
+        &--right {
+            right: -1.8vmin;
+            border-right: 2px solid #ff69b4;
+            transform: rotate(30deg);
+        }
+    }
+
+    /* Thorax: Middle Segment Where Wings Attach */
+    &__thorax {
+        width: 2vmin;
+        height: 4.2vmin;
+        margin-top: 0.2vmin;
+        background: linear-gradient(to bottom, #ffffff 0%, #ff69b4 40%, #47082e 80%, #14010d 100%);
+        border-radius: 10px;
+        box-shadow: 0 0 12px #ff69b4, 0 0 24px #ff1493;
+    }
+
+    /* Abdomen: Posterior Body Segment */
+    &__abdomen {
+        width: 1.4vmin;
+        height: 5.8vmin;
+        margin-top: 0.1vmin;
+        background: linear-gradient(to bottom, #47082e 0%, #2b041c 60%, #0d0108 100%);
+        border-radius: 8px;
+        box-shadow: 0 0 8px #ff69b4;
+    }
+
+    /* Wing Pairs (Attached to Thorax, Symmetrical Pivot) */
+    &__wing-pair {
+        position: absolute;
+        top: 5%;
+        width: 11vmin;
+        height: 17vmin;
+        transform-style: preserve-3d;
+
+        &--left {
+            left: 0;
+            transform-origin: right center;
+            animation: flap-left 0.22s ease-in-out infinite alternate;
+        }
+
+        &--right {
+            right: 0;
+            transform-origin: left center;
+            animation: flap-right 0.22s ease-in-out infinite alternate;
+        }
+    }
+
+    /* Wings Layering: Deep Dark Plum/Magenta Base with Pink Patterns */
+    &__wing {
+        position: absolute;
+        transform-style: preserve-3d;
+        overflow: visible;
+
+        /* Pink Marginal Spot Row along Outer Edge */
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background-image: 
+                radial-gradient(circle at 6% 10%, #ffffff 0%, #ff69b4 2px, transparent 3.5px),
+                radial-gradient(circle at 18% 5%, #ffffff 0%, #ff69b4 2px, transparent 3.5px),
+                radial-gradient(circle at 32% 3%, #ffb6c1 0%, #ffb6c1 2.5px, transparent 4px),
+                radial-gradient(circle at 50% 4%, #ffffff 0%, #ff69b4 2px, transparent 3.5px),
+                radial-gradient(circle at 68% 5%, #ffb6c1 0%, #ffb6c1 2.5px, transparent 4px),
+                radial-gradient(circle at 83% 12%, #ffffff 0%, #ff69b4 2px, transparent 3.5px),
+                radial-gradient(circle at 94% 26%, #ffb6c1 0%, #ffb6c1 2.5px, transparent 4px),
+                radial-gradient(circle at 96% 44%, #ffffff 0%, #ff69b4 2px, transparent 3.5px),
+                radial-gradient(circle at 92% 62%, #ffb6c1 0%, #ffb6c1 2.5px, transparent 4px);
+            pointer-events: none;
+            z-index: 12;
+            filter: drop-shadow(0 0 5px #ff69b4);
+        }
+
+        /* Forewings (Front Pair): Sharply Elongated & Triangular – wide at base, pointed apex */
+        &--fore {
+            top: 0;
+            width: 11vmin;
+            height: 13vmin;
+            z-index: 10;
+            background: linear-gradient(138deg, 
+                #2b041c 0%, 
+                #47082e 20%, 
+                #2b041c 45%, 
+                #14010d 70%,
+                #2b041c 100%
+            );
+            /* Clip to sharp triangular forewing shape */
+            clip-path: polygon(0% 0%, 100% 18%, 88% 100%, 0% 72%);
+            box-shadow: inset 0 0 22px rgba(255, 105, 180, 0.5), 0 0 28px rgba(255, 20, 147, 0.9);
+        }
+
+        /* Hindwings (Back Pair): Scalloped Lobed Edge with Tail-like Extension */
+        &--hind {
+            top: 7vmin;
+            width: 9.5vmin;
+            height: 10.5vmin;
+            z-index: 5;
+            background: linear-gradient(148deg, 
+                #47082e 0%, 
+                #2b041c 35%, 
+                #14010d 65%, 
+                #2b041c 100%
+            );
+            /* Scalloped outer edge via clip-path lobes */
+            clip-path: polygon(
+                0% 0%, 100% 12%,
+                96% 30%, 100% 48%,
+                94% 65%, 98% 82%,
+                88% 100%, 60% 94%,
+                35% 100%, 12% 90%,
+                0% 72%
+            );
+            box-shadow: inset 0 0 20px rgba(255, 105, 180, 0.5), 0 0 24px rgba(255, 20, 147, 0.85);
+        }
+    }
+
+    &__wing-pair--left {
+        .butterfly__wing--fore {
+            right: 0;
+            /* Mirror forewing clip for left side */
+            clip-path: polygon(100% 0%, 0% 18%, 12% 100%, 100% 72%);
+        }
+        .butterfly__wing--hind {
+            right: 0.4vmin;
+            /* Mirror hindwing scallops for left side */
+            clip-path: polygon(
+                100% 0%, 0% 12%,
+                4% 30%, 0% 48%,
+                6% 65%, 2% 82%,
+                12% 100%, 40% 94%,
+                65% 100%, 88% 90%,
+                100% 72%
+            );
+        }
+        .butterfly__wing-tail {
+            right: 1.5vmin;
+            transform: rotate(-16deg);
+        }
+    }
+
+    &__wing-pair--right {
+        .butterfly__wing--fore {
+            left: 0;
+        }
+        .butterfly__wing--hind {
+            left: 0.4vmin;
+        }
+        .butterfly__wing-tail {
+            left: 1.5vmin;
+            transform: rotate(16deg);
+        }
+    }
+
+    /* Swallowtail Slender Tail Appendages with Pointed Tip */
+    &__wing-tail {
+        position: absolute;
+        bottom: -5.5vmin;
+        width: 1.2vmin;
+        height: 6vmin;
+        background: linear-gradient(to bottom, #47082e 0%, #ff1493 30%, #ff69b4 60%, #2b041c 100%);
+        /* Narrowing teardrop tail shape */
+        clip-path: polygon(30% 0%, 70% 0%, 90% 60%, 50% 100%, 10% 60%);
+        box-shadow: 0 0 12px #ff69b4, 0 0 22px #ff1493;
+        z-index: 15;
+        filter: drop-shadow(0 0 8px rgba(255, 105, 180, 0.95));
+    }
+
+    /* Pink Wing Cell Patterns & Discal Spot Bands */
+    &__wing-cells {
+        position: absolute;
+        inset: 0;
+        z-index: 4;
+        background: 
+            /* Primary Discal Cell – bright pink basal patch */
+            radial-gradient(ellipse at 72% 22%, #ff69b4 0%, #ff1493 28%, rgba(255, 20, 147, 0.35) 55%, transparent 75%),
+            /* Subcostal Median Band */
+            radial-gradient(ellipse at 38% 48%, #ffc0cb 0%, #ff69b4 30%, transparent 65%),
+            /* Postdiscal Row Spots */
+            radial-gradient(circle at 65% 68%, #ff1493 0%, #ff69b4 18%, transparent 38%),
+            radial-gradient(circle at 45% 80%, #ff69b4 0%, transparent 30%),
+            /* Submarginal Pink Band */
+            radial-gradient(ellipse at 88% 55%, rgba(255, 20, 147, 0.6) 0%, transparent 45%);
+        pointer-events: none;
+        opacity: 0.95;
+        mix-blend-mode: screen;
+    }
+
+    /* Intricate Vein Network (Costal, Radial, Medial, Cubital, Anal veins) */
+    &__wing-veins {
+        position: absolute;
+        inset: 0;
+        z-index: 5;
+        background: 
+            /* Costal vein along top edge */
+            linear-gradient(to bottom, rgba(15, 2, 10, 0.9) 0px, rgba(15, 2, 10, 0.9) 1.5px, transparent 1.5px),
+            /* Radial stem – main diagonal rays */
+            repeating-linear-gradient(22deg, rgba(20, 3, 14, 0.85) 0px, rgba(20, 3, 14, 0.85) 1.5px, transparent 1.5px, transparent 9px),
+            /* Medial & Cubital cross veins */
+            repeating-linear-gradient(-30deg, rgba(30, 4, 20, 0.7) 0px, rgba(30, 4, 20, 0.7) 1px, transparent 1px, transparent 11px),
+            /* Anal vein – curved toward inner margin */
+            repeating-linear-gradient(55deg, rgba(15, 2, 10, 0.6) 0px, rgba(15, 2, 10, 0.6) 1px, transparent 1px, transparent 15px),
+            /* Intercalary vein cells */
+            repeating-linear-gradient(-55deg, rgba(25, 3, 16, 0.5) 0px, rgba(25, 3, 16, 0.5) 1px, transparent 1px, transparent 18px);
+        pointer-events: none;
+        filter: contrast(1.4) brightness(0.85);
+    }
+
+    /* Fine Wing Scale Micro-Texture (overlapping scale rows) */
+    &__wing-scales {
+        position: absolute;
+        inset: 0;
+        z-index: 6;
+        background: 
+            /* Overlapping scale rows */
+            repeating-radial-gradient(circle at 25% 25%, rgba(255, 105, 180, 0.2) 0px, transparent 2px),
+            repeating-radial-gradient(circle at 75% 75%, rgba(255, 105, 180, 0.16) 0px, transparent 2px),
+            repeating-radial-gradient(circle at 50% 10%, rgba(255, 182, 193, 0.15) 0px, transparent 1.8px),
+            /* Base iridescent sheen */
+            linear-gradient(135deg, rgba(255, 105, 180, 0.18) 0%, rgba(0, 0, 0, 0.25) 50%, rgba(255, 20, 147, 0.12) 100%);
+        pointer-events: none;
+    }
+
+    /* Twinkling Starry Pink Sparkles */
+    &__wing-sparkles {
+        position: absolute;
+        inset: 0;
+        z-index: 8;
+        background-image: 
+            radial-gradient(circle at 20% 25%, #ffffff 0%, #ffffff 3px, transparent 4.5px),
+            radial-gradient(circle at 42% 15%, #ffc0cb 0%, #ffc0cb 2.5px, transparent 4px),
+            radial-gradient(circle at 72% 20%, #ff69b4 0%, #ff69b4 3px, transparent 4.5px),
+            radial-gradient(circle at 84% 40%, #ffffff 0%, #ffffff 2.5px, transparent 3.5px),
+            radial-gradient(circle at 50% 62%, #ff1493 0%, #ff1493 2px, transparent 3.5px);
+        animation: sparkle-twinkle 2.5s ease-in-out infinite alternate;
+        pointer-events: none;
+    }
+
+    /* Pink Luminous Eye Spot */
+    &__wing-spot {
+        position: absolute;
+        bottom: 2vmin;
+        width: 2.5vmin;
+        height: 2.5vmin;
+        border-radius: 50%;
+        background: radial-gradient(circle, #ffffff 0%, #ffb6c1 30%, #ff1493 60%, #14010d 100%);
+        box-shadow: 0 0 12px #ffffff, 0 0 20px #ff69b4;
+        z-index: 10;
+
+        .butterfly__wing-pair--left & {
+            left: 1.8vmin;
+        }
+
+        .butterfly__wing-pair--right & {
+            right: 1.8vmin;
+        }
+    }
+
+    /* Butterfly 2 Variation (Rose Gold & Soft Cherry Pink) */
+    &--2 {
+        filter: drop-shadow(0 0 16px #ffb6c1) drop-shadow(0 0 32px #ff69b4) drop-shadow(0 0 50px rgba(255, 182, 193, 0.85));
+
+        .butterfly__wing--fore {
+            background: linear-gradient(135deg, 
+                #3d0528 0%, 
+                #17010e 45%, 
+                #2b041c 100%
+            );
+        }
+
+        .butterfly__wing-cells {
+            background: 
+                radial-gradient(ellipse at 80% 20%, #ffffff 0%, #ffc0cb 40%, transparent 80%),
+                radial-gradient(ellipse at 45% 55%, #ff69b4 0%, #ff1493 50%, transparent 85%);
+        }
+    }
+
+    /* Landed Resting State */
+    &.landed {
+        opacity: 1 !important;
+
+        .butterfly__wing-pair--left {
+            animation: flap-left-rest 3.4s ease-in-out infinite alternate !important;
+        }
+
+        .butterfly__wing-pair--right {
+            animation: flap-right-rest 3.4s ease-in-out infinite alternate !important;
+        }
+    }
+
+    &--1.landed {
+        left: 40vw !important;
+        top: 36vh !important;
+        transform: scale(0.8) rotate(-14deg);
+    }
+
+    &--2.landed {
+        left: 54vw !important;
+        top: 46vh !important;
+        transform: scale(0.78) rotate(16deg);
+    }
+}
+
+/* Twinkling Sparkles Keyframes */
+@keyframes sparkle-twinkle {
+    0% {
+        opacity: 0.6;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+/* Wing Flapping Animations */
+@keyframes flap-left {
+    0% {
+        transform: rotateY(-62deg);
+    }
+    100% {
+        transform: rotateY(52deg);
+    }
+}
+
+@keyframes flap-right {
+    0% {
+        transform: rotateY(62deg);
+    }
+    100% {
+        transform: rotateY(-52deg);
+    }
+}
+
+@keyframes flap-left-rest {
+    0%, 100% {
+        transform: rotateY(-18deg);
+    }
+    50% {
+        transform: rotateY(38deg);
+    }
+}
+
+@keyframes flap-right-rest {
+    0%, 100% {
+        transform: rotateY(18deg);
+    }
+    50% {
+        transform: rotateY(-38deg);
+    }
+}
+
+/* Flight Paths (Optimized for larger size) */
+.butterfly--1.fly {
+    animation: butterfly-flight-1 9.5s cubic-bezier(0.37, 0, 0.63, 1) forwards;
+}
+
+@keyframes butterfly-flight-1 {
+    0% {
+        left: 105vw;
+        top: 20vh;
+        transform: scale(0.6) rotate(20deg);
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    /* Loop 1 */
+    22% {
+        left: 68vw;
+        top: 32vh;
+        transform: scale(0.85) rotate(-15deg);
+    }
+    38% {
+        left: 30vw;
+        top: 58vh;
+        transform: scale(1.05) rotate(-35deg);
+    }
+    50% {
+        left: 62vw;
+        top: 22vh;
+        transform: scale(0.75) rotate(25deg);
+    }
+    /* Loop 2 */
+    66% {
+        left: 26vw;
+        top: 60vh;
+        transform: scale(1.1) rotate(-30deg);
+    }
+    80% {
+        left: 65vw;
+        top: 25vh;
+        transform: scale(0.8) rotate(20deg);
+    }
+    92% {
+        left: 40vw;
+        top: 34vh;
+        transform: scale(0.85) rotate(-10deg);
+    }
+    /* Landing on Left Flower Petal */
+    100% {
+        left: 40vw;
+        top: 36vh;
+        transform: scale(0.8) rotate(-14deg);
+        opacity: 1;
+    }
+}
+
+.butterfly--2.fly {
+    animation: butterfly-flight-2 9.5s cubic-bezier(0.37, 0, 0.63, 1) forwards;
+}
+
+@keyframes butterfly-flight-2 {
+    0% {
+        left: 56vw;
+        top: 45vh;
+        transform: scale(0.3) rotate(45deg);
+        opacity: 0;
+    }
+    6% {
+        left: 62vw;
+        top: 32vh;
+        transform: scale(0.7) rotate(15deg);
+        opacity: 1;
+    }
+    /* Loop 1 */
+    26% {
+        left: 28vw;
+        top: 20vh;
+        transform: scale(0.65) rotate(-25deg);
+    }
+    44% {
+        left: 66vw;
+        top: 62vh;
+        transform: scale(1.05) rotate(35deg);
+    }
+    58% {
+        left: 32vw;
+        top: 24vh;
+        transform: scale(0.7) rotate(-20deg);
+    }
+    /* Loop 2 */
+    74% {
+        left: 68vw;
+        top: 58vh;
+        transform: scale(1) rotate(28deg);
+    }
+    88% {
+        left: 50vw;
+        top: 35vh;
+        transform: scale(0.85) rotate(-10deg);
+    }
+    /* Landing on Right Flower Stem Leaf */
+    100% {
+        left: 54vw;
+        top: 46vh;
+        transform: scale(0.78) rotate(16deg);
+        opacity: 1;
+    }
+}
+
+/* ==========================================================================
+   Interactive Butterfly 2 Pointer & Pulse Prompt
+   ========================================================================== */
+.butterfly--2.landed.interactive-ready {
+    left: 54vw !important;
+    top: 46vh !important;
+    opacity: 1 !important;
+    z-index: 1500 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    animation: butterfly-pulse 1.8s ease-in-out infinite alternate !important;
+
+    * {
+        pointer-events: auto !important;
+        cursor: pointer !important;
+    }
+}
+
+@keyframes butterfly-pulse {
+    0% {
+        left: 54vw;
+        top: 46vh;
+        opacity: 1;
+        transform: scale(0.78) rotate(16deg);
+        filter: drop-shadow(0 0 16px #ff69b4) drop-shadow(0 0 30px #ff1493);
+    }
+    100% {
+        left: 54vw;
+        top: 46vh;
+        opacity: 1;
+        transform: scale(0.92) rotate(16deg);
+        filter: drop-shadow(0 0 30px #ffffff) drop-shadow(0 0 50px #ff1493) drop-shadow(0 0 70px #ff69b4);
+    }
+}
+
+/* ==========================================================================
+   6-Digit PIN Passcode Modal
+   ========================================================================== */
+.pin-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(10, 3, 16, 0.75);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    contain: layout style;
+    will-change: opacity;
+    transform: translateZ(0);
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+.pin-modal {
+    position: relative;
+    width: 90%;
+    max-width: 380px;
+    background: linear-gradient(145deg, rgba(30, 8, 38, 0.92), rgba(15, 3, 20, 0.96));
+    border: 1.5px solid rgba(255, 105, 180, 0.45);
+    border-radius: 28px;
+    padding: 32px 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 35px rgba(255, 20, 147, 0.35);
+    text-align: center;
+    color: #ffffff;
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: scale3d(0.85, 0.85, 1);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    .pin-modal-overlay.active & {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+.pin-close-btn {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 28px;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+        color: #ff69b4;
+        transform: scale(1.15);
+    }
+}
+
+.pin-icon {
+    font-size: 42px;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.8));
+    animation: icon-float 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes icon-float {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(0, -6px, 0); }
+}
+
+.pin-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0 0 6px 0;
+    background: linear-gradient(135deg, #ffffff 0%, #ffb6c1 50%, #ff69b4 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.pin-subtitle {
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.65);
+    margin: 0 0 24px 0;
+}
+
+.pin-display {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.pin-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 105, 180, 0.5);
+    background: transparent;
+    will-change: transform, background-color;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &.filled {
+        background: #ff69b4;
+        border-color: #ffffff;
+        box-shadow: 0 0 14px #ff69b4, 0 0 20px #ff1493;
+        transform: scale(1.1);
+    }
+}
+
+.pin-error {
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    color: #ff4d6d;
+    height: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+
+    &.visible {
+        opacity: 1;
+    }
+}
+
+.pin-modal.shake {
+    animation: modal-shake 0.4s ease-in-out;
+}
+
+@keyframes modal-shake {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    20% { transform: translate3d(-12px, 0, 0); }
+    40% { transform: translate3d(12px, 0, 0); }
+    60% { transform: translate3d(-8px, 0, 0); }
+    80% { transform: translate3d(8px, 0, 0); }
+}
+
+.pin-keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.pin-key {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 105, 180, 0.25);
+    border-radius: 16px;
+    padding: 14px 0;
+    font-family: 'Outfit', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+    cursor: pointer;
+    will-change: transform;
+    transition: all 0.18s ease;
+
+    &:hover {
+        background: rgba(255, 105, 180, 0.25);
+        border-color: rgba(255, 105, 180, 0.6);
+        box-shadow: 0 0 15px rgba(255, 105, 180, 0.4);
+    }
+
+    &:active {
+        transform: scale(0.92);
+        background: #ff69b4;
+    }
+
+    &--action {
+        font-size: 16px;
+        color: rgba(255, 182, 193, 0.85);
+    }
+}
+
+/* ==========================================================================
+   Animated 3D Romantic Envelope Popup
+   ========================================================================== */
+.envelope-wrapper {
+    position: fixed;
+    inset: 0;
+    z-index: 1800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(8, 2, 12, 0.65);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    opacity: 0;
+    pointer-events: none;
+    contain: layout style;
+    will-change: opacity;
+    transform: translateZ(0);
+    transition: opacity 0.5s ease;
+
+    &.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+.envelope {
+    position: relative;
+    width: 220px;
+    height: 150px;
+    cursor: pointer;
+    perspective: 800px;
+    transform: scale3d(0.75, 0.75, 1);
+    will-change: transform;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: envelope-float 2.8s ease-in-out infinite alternate;
+    filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 25px rgba(255, 105, 180, 0.6));
+
+    .envelope-wrapper.active & {
+        transform: scale3d(1, 1, 1);
+    }
+
+    &:hover {
+        filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 35px #ff69b4);
+    }
+
+    /* Envelope Main Body (Pocket & Front Flap) */
+    &__body {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(145deg, #ff1493 0%, #d80056 50%, #9e0038 100%);
+        border-radius: 12px;
+        box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.25), 0 10px 30px rgba(0, 0, 0, 0.4);
+        z-index: 5;
+        clip-path: polygon(0% 0%, 50% 55%, 100% 0%, 100% 100%, 0% 100%);
+    }
+
+    /* Inner Parchment Paper Sliding Out */
+    &__paper {
+        position: absolute;
+        left: 15px;
+        bottom: 12px;
+        width: 190px;
+        height: 120px;
+        background: linear-gradient(135deg, #fdf6e2 0%, #f4e7c5 100%);
+        border-radius: 8px;
+        padding: 12px 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        z-index: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        will-change: transform;
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    &__paper-line {
+        width: 80%;
+        height: 3px;
+        background: rgba(160, 110, 50, 0.35);
+        border-radius: 2px;
+
+        &:nth-child(2) {
+            width: 60%;
+        }
+    }
+
+    &__paper-heart {
+        font-size: 20px;
+        margin-top: 4px;
+        filter: drop-shadow(0 2px 4px rgba(255, 20, 147, 0.4));
+    }
+
+    /* Envelope Triangular Top Flap */
+    &__top-flap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 220px;
+        height: 85px;
+        background: linear-gradient(145deg, #ff69b4 0%, #ff1493 100%);
+        clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+        transform-origin: top center;
+        z-index: 10;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        will-change: transform;
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), z-index 0.1s 0.3s;
+    }
+
+    /* Wax Heart Seal on Top Flap */
+    &__seal {
+        position: absolute;
+        top: 65px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 38px;
+        height: 38px;
+        background: radial-gradient(circle, #ff4d6d 0%, #c70039 70%, #800020 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        z-index: 15;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5), inset 0 0 6px rgba(255, 255, 255, 0.4);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    /* Opening Animation States */
+    &.open &__top-flap {
+        transform: rotateX(180deg);
+        z-index: 2;
+    }
+
+    &.open &__paper {
+        transform: translate3d(0, -75px, 0);
+    }
+
+    &.open &__seal {
+        opacity: 0;
+        transform: translateX(-50%) scale(0.5);
+    }
+
+    &.open {
+        animation: envelope-pop 0.8s ease forwards;
+    }
+}
+
+@keyframes envelope-float {
+    0% { transform: translate3d(0, 0, 0) scale3d(1, 1, 1); }
+    100% { transform: translate3d(0, -12px, 0) scale3d(1.04, 1.04, 1); }
+}
+
+@keyframes envelope-pop {
+    0% { transform: scale3d(1, 1, 1); }
+    50% { transform: scale3d(1.08, 1.08, 1); }
+    100% { transform: scale3d(0.85, 0.85, 1); opacity: 0; }
+}
+
+/* ==========================================================================
+   Vintage Parchment Letter Modal
+   ========================================================================== */
+.letter-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2500;
+    background: rgba(10, 2, 14, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    contain: layout style;
+    will-change: opacity;
+    transform: translateZ(0);
+    transition: opacity 0.6s ease;
+
+    &.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+.letter-container {
+    position: relative;
+    width: 100%;
+    max-width: 580px;
+    max-height: 85vh;
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translate3d(0, 40px, 0) scale3d(0.92, 0.92, 1);
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    .letter-modal-overlay.active & {
+        transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    }
+}
+
+.letter-close-btn {
+    position: absolute;
+    top: -18px;
+    right: -14px;
+    z-index: 20;
+    width: 38px;
+    height: 38px;
+    background: #2b0818;
+    border: 2px solid #ff69b4;
+    color: #ffffff;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.6);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+
+    &:hover {
+        background: #ff1493;
+        transform: scale(1.15) rotate(90deg);
+    }
+}
+
+.letter-paper {
+    position: relative;
+    background: linear-gradient(135deg, #fdf6e2 0%, #f4e7c5 40%, #ebd7a3 100%);
+    border: 2px solid #c8a86b;
+    border-radius: 12px;
+    padding: 42px 36px 36px 36px;
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.6), 
+        inset 0 0 60px rgba(139, 90, 43, 0.2), 
+        0 0 30px rgba(255, 105, 180, 0.3);
+    color: #3d2716;
+    max-height: 80vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #c8a86b transparent;
+
+    /* Subtle Paper Texture & Aged Deckled Edge Sheen */
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 6px;
+        border: 1px dashed rgba(160, 110, 50, 0.35);
+        border-radius: 8px;
+        pointer-events: none;
+    }
+}
+
+.letter-seal {
+    font-size: 34px;
+    text-align: center;
+    margin-bottom: 6px;
+    filter: drop-shadow(0 2px 6px rgba(180, 0, 50, 0.4));
+}
+
+.letter-heading {
+    font-family: 'Dancing Script', 'Playfair Display', Georgia, serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #7a1c36;
+    text-align: center;
+    margin: 0 0 8px 0;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.letter-divider {
+    text-align: center;
+    font-size: 14px;
+    color: #a3723f;
+    margin-bottom: 24px;
+    letter-spacing: 4px;
+}
+
+.letter-content {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.8;
+    color: #2e1a0c;
+
+    p {
+        margin-bottom: 18px;
+        text-indent: 20px;
+    }
+}
+
+.letter-closing {
+    font-family: 'Dancing Script', Georgia, serif;
+    font-size: 22px !important;
+    font-weight: 600;
+    color: #8c1d40;
+    margin-top: 26px;
+    text-align: right;
+    text-indent: 0 !important;
+}
